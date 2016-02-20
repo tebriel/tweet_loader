@@ -8,8 +8,6 @@ import (
 	"strings"
 )
 
-var field_mapping = []string{"TweetId", "InReplyToStatusId", "InReplyToUserId", "Timestamp", "Source", "Text", "RetweetedStatusId", "RetweetedStatusUserId", "RetweetedStatusTimestamp", "ExpandedUrls"}
-
 type CSVTweet struct {
 	TweetId                  int      `json:"tweet_id"`
 	InReplyToStatusId        int      `json:"in_reply_to_status_id"`
