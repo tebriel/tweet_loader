@@ -33,3 +33,9 @@ manually creating this for some reason (sure, it's your time you're wasting) add
 2. Elasticsearch Instance. That seems pretty self explanatory, www.elastic.co if not.
 3. I dunno, desire to play around with my weird script.
 4. Golang environment, definitely a golang environment.
+
+## Loaded into Kibana ##
+
+Here's a screenshot of it in Kibana, maybe that's proof that this worked for me that one time.
+
+![Kibana](./example.png)
