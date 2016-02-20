@@ -11,13 +11,13 @@ const es_mapping = `
         "analyzer": "whitespace"
       },
       "in_reply_to_status_id": {
-        "type": "long"
+        "type": "string"
       },
       "in_reply_to_user_id": {
-        "type": "long"
+        "type": "string"
       },
       "retweeted_status_id": {
-        "type": "long"
+        "type": "string"
       },
       "retweeted_status_timestamp": {
         "type": "date",
@@ -25,7 +25,7 @@ const es_mapping = `
         "format": "YYYY-MM-dd HH:mm:ss Z"
       },
       "retweeted_status_user_id": {
-        "type": "long"
+        "type": "string"
       },
       "source": {
         "type": "string"
@@ -39,7 +39,7 @@ const es_mapping = `
         "ignore_malformed": true
       },
       "tweet_id": {
-        "type": "long"
+        "type": "string"
       }
     }
   }

@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/golang/glog"
 	"gopkg.in/olivere/elastic.v3"
-	"strconv"
 	"time"
 )
 
@@ -50,7 +49,7 @@ func SendToES(client *elastic.Client, tweets []CSVTweet) {
 		if idx == 0 {
 			continue
 		}
-		action := elastic.NewBulkIndexRequest().Index(index_name).Type("tweet").Id(strconv.Itoa(tweet.TweetId)).Doc(tweet)
+		action := elastic.NewBulkIndexRequest().Index(index_name).Type("tweet").Id(tweet.TweetId).Doc(tweet)
 		bulkRequest.Add(action)
 	}
 

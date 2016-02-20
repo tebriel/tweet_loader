@@ -14,7 +14,7 @@ var record_with_urls = []string{"700467274776387584", "700450215577255936", "148
 
 func TestConvertRecordToTweet(t *testing.T) {
 	tweet := ConvertRecordToTweet(record_no_urls)
-	expected_id := 700467274776387584
+	expected_id := "700467274776387584"
 	actual_id := tweet.TweetId
 	expected_timestamp := "2016-02-18 23:49:47 +0000"
 	actual_timestamp := tweet.Timestamp
@@ -42,7 +42,7 @@ func TestMarshallRecords(t *testing.T) {
 	if actual_length != expected_length {
 		t.Errorf("Expected %d tweets, but had %d", expected_length, actual_length)
 	}
-	expected_id := 700467274776387584
+	expected_id := "700467274776387584"
 	actual_id := tweets[0].TweetId
 	if actual_id != expected_id {
 		t.Errorf("Expected the first tweet to have id of %d but instead had %d", expected_id, actual_id)
