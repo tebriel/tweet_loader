@@ -20,7 +20,7 @@ docker_run:
 		${project_name} -v=2 -logtostderr=true
 
 run:
-	go run ${project_name}.go -v=2 -logtostderr=true
+	go run *.go -v=2 -logtostderr=true
 
 test:
 	go test ./...
