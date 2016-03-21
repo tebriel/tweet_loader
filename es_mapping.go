@@ -2,7 +2,7 @@ package main
 
 // I thought about having this as a template, but it doesn't change. But I wanted it compiled into
 // the app. If this is bad (yeah definitely probably is) oh well, too bad
-const es_mapping = `
+const esMapping = `
 {
   "tweet": {
     "properties": {

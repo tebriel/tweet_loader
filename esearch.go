@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var index_name = "csvtweets"
+var indexName = "csvtweets"
 
 func connect(url string) *elastic.Client {
 	// Create a client
@@ -19,18 +19,19 @@ func connect(url string) *elastic.Client {
 	return client
 }
 
+// MakeIndex creates the needed elasticsearch Index
 func MakeIndex(client *elastic.Client) {
-	glog.V(2).Infof("Checking to see if index %s exists", index_name)
-	exists, err := client.IndexExists(index_name).Do()
+	glog.V(2).Infof("Checking to see if index %s exists", indexName)
+	exists, err := client.IndexExists(indexName).Do()
 	if err != nil {
 		glog.Fatalf("Had problems checking index existence: %s", err)
 	}
 	if !exists {
 		glog.V(2).Info("Index didn't exist, creating it")
 		// Index does not exist yet.
-		client.CreateIndex(index_name).Do()
+		client.CreateIndex(indexName).Do()
 		glog.V(2).Info("Pushing mapping to Index")
-		resp, err := client.PutMapping().Index(index_name).Type("tweet").BodyString(es_mapping).Do()
+		resp, err := client.PutMapping().Index(indexName).Type("tweet").BodyString(esMapping).Do()
 		if err != nil {
 			glog.Fatalf("Couldn't push mapping to index: %s", err)
 		} else {
@@ -41,15 +42,16 @@ func MakeIndex(client *elastic.Client) {
 	}
 }
 
+// SendToES does a bulk index of tweets into ElasticSearch
 func SendToES(client *elastic.Client, tweets []CSVTweet) {
-	glog.V(2).Infof("Building Bulk Insert for %d Tweets", len(tweets))
+	glog.V(2).Infof("Building Bulk Index for %d Tweets", len(tweets))
 
 	bulkRequest := client.Bulk()
 	for idx, tweet := range tweets {
 		if idx == 0 {
 			continue
 		}
-		action := elastic.NewBulkIndexRequest().Index(index_name).Type("tweet").Id(tweet.TweetId).Doc(tweet)
+		action := elastic.NewBulkIndexRequest().Index(indexName).Type("tweet").Id(tweet.TweetID).Doc(tweet)
 		bulkRequest.Add(action)
 	}
 
@@ -63,8 +65,9 @@ func SendToES(client *elastic.Client, tweets []CSVTweet) {
 
 }
 
-func DoESWork(es_url string, tweets []CSVTweet) {
-	client := connect(es_url)
+// DoESWork sticthes together all of the ES functionality into a single workflow
+func DoESWork(esURL string, tweets []CSVTweet) {
+	client := connect(esURL)
 	MakeIndex(client)
 	SendToES(client, tweets)
 }
