@@ -19,7 +19,7 @@ func TestConvertRecordToTweet(t *testing.T) {
 	expected_timestamp := "2016-02-18 23:49:47 +0000"
 	actual_timestamp := tweet.Timestamp
 	if expected_id != actual_id {
-		t.Errorf("Expected tweet id to be %d but was %d", expected_id, actual_id)
+		t.Errorf("Expected tweet id to be %s but was %s", expected_id, actual_id)
 	} else if expected_timestamp != actual_timestamp {
 		t.Errorf("Expected tweet timestamp to be %s but was %s", expected_timestamp, actual_timestamp)
 	}
@@ -45,7 +45,7 @@ func TestMarshallRecords(t *testing.T) {
 	expected_id := "700467274776387584"
 	actual_id := tweets[0].TweetId
 	if actual_id != expected_id {
-		t.Errorf("Expected the first tweet to have id of %d but instead had %d", expected_id, actual_id)
+		t.Errorf("Expected the first tweet to have id of %s but instead had %s", expected_id, actual_id)
 	}
 }
 
